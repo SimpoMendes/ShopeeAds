@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ShopeeAds</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <aside>
+      <h2>ShopeeAds</h2>
+      <p>Gerador de anúncios otimizados para a Shopee com IA</p>
+      <div class="api-config">
+        <label>Groq API Key
+          <div class="api-input-wrap">
+            <input id="apikey" type="password" placeholder="Cole sua chave aqui">
+            <button class="btn-salvar-key" onclick="salvarKey()">Salvar</button>
+          </div>
+        </label>
+        <span id="key-status"></span>
+        <a href="https://console.groq.com/keys" target="_blank" class="link-key">Obter chave gratuita →</a>
+      </div>
+    </aside>
+    <main>
+      <h1>Criar Anúncio</h1>
+
+      <div class="form-section destaque">
+        <h3>✨ Palavra-chave do Produto</h3>
+        <label>
+          <input id="keyword" type="text" placeholder="Ex: gancho para parede, suporte celular, camiseta masculina..." class="input-grande">
+        </label>
+        <p class="hint">A IA vai analisar os melhores anúncios da Shopee e criar título, descrição e tags otimizados.</p>
+      </div>
+
+      <details class="form-section">
+        <summary>Detalhes opcionais (para resultado ainda melhor)</summary>
+        <div class="details-content">
+          <div class="grid">
+            <label>Preço (R$)
+              <input id="preco" type="number" placeholder="Ex: 49.90">
+            </label>
+            <label>Preço Original / De (R$)
+              <input id="preco_original" type="number" placeholder="Ex: 89.90">
+            </label>
+            <label>Categoria
+              <select id="categoria">
+                <option value="">Selecione...</option>
+                <option>Roupas Masculinas</option>
+                <option>Roupas Femininas</option>
+                <option>Eletrônicos</option>
+                <option>Casa e Decoração</option>
+                <option>Beleza e Cuidados</option>
+                <option>Esportes</option>
+                <option>Brinquedos</option>
+                <option>Calçados</option>
+                <option>Acessórios</option>
+                <option>Outros</option>
+              </select>
+            </label>
+            <label>Condição
+              <select id="condicao">
+                <option value="Novo">Novo</option>
+                <option value="Usado">Usado</option>
+                <option value="Recondicionado">Recondicionado</option>
+              </select>
+            </label>
+            <label>Cores (separadas por vírgula)
+              <input id="cores" type="text" placeholder="Ex: Preto, Branco, Azul">
+            </label>
+            <label>Tamanhos (separados por vírgula)
+              <input id="tamanhos" type="text" placeholder="Ex: P, M, G, GG">
+            </label>
+            <label>Peso do pacote (kg)
+              <input id="peso" type="number" placeholder="Ex: 0.3">
+            </label>
+            <label>Prazo de envio (dias)
+              <select id="prazo">
+                <option value="1">1 dia</option>
+                <option value="2" selected>2 dias</option>
+                <option value="3">3 dias</option>
+                <option value="5">5 dias</option>
+                <option value="7">7 dias</option>
+              </select>
+            </label>
+          </div>
+          <label style="margin-top:12px">Diferenciais do produto (um por linha)
+            <textarea id="pontos" rows="4" placeholder="Ex:&#10;Material premium&#10;Fácil instalação&#10;Suporta até 10kg"></textarea>
+          </label>
+        </div>
+      </details>
+
+      <div class="botoes">
+        <button class="btn-ia" onclick="gerarComIA()">✨ Gerar com IA</button>
+        <button class="btn-manual" onclick="gerar()">Gerar Manual</button>
+      </div>
+      <div id="ia-loading" class="ia-loading hidden">⏳ A IA está analisando e criando seu anúncio...</div>
+
+      <div id="resultado" class="resultado hidden">
+        <div class="resultado-header">
+          <h3>Anúncio Gerado</h3>
+          <button class="btn-copiar" onclick="copiar()">Copiar Tudo</button>
+        </div>
+        <div id="preview" class="preview"></div>
+      </div>
+
+      <div id="salvos" class="salvos hidden">
+        <h3>Anúncios Salvos</h3>
+        <div id="lista-salvos"></div>
+      </div>
+    </main>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>
